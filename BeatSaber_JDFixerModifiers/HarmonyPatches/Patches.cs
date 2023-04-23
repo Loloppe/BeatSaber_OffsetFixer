@@ -4,7 +4,7 @@ using System;
 namespace BeatSaber_JDFixerModifiers.HarmonyPatches
 {
 	[HarmonyPatch(typeof(BeatmapObjectSpawnMovementData), "Init")]
-    [HarmonyAfter(new string[] { "com.zephyr.BeatSaber.JDFixer" })]
+	[HarmonyAfter(new string[] { "com.zephyr.BeatSaber.JDFixer" })]
 	static class Patches
 	{
 		static void Prefix(ref float noteJumpValue)
@@ -14,11 +14,11 @@ namespace BeatSaber_JDFixerModifiers.HarmonyPatches
 				if (Plugin.levelData.GameplayCoreSceneSetupData.practiceSettings != null) // Practice mode
 				{
 					if(Plugin.levelData.GameplayCoreSceneSetupData.practiceSettings.songSpeedMul >= 1)
-                    {
+					{
 						noteJumpValue += Math.Abs(noteJumpValue - Plugin.levelData.GameplayCoreSceneSetupData.practiceSettings.songSpeedMul * noteJumpValue);
 					}
 					else
-                    {
+					{
 						noteJumpValue -= Math.Abs(noteJumpValue - Plugin.levelData.GameplayCoreSceneSetupData.practiceSettings.songSpeedMul * noteJumpValue);
 					}
 				}
@@ -51,7 +51,7 @@ namespace BeatSaber_JDFixerModifiers.HarmonyPatches
 							multi = Configs.Configs.Instance.SF;
 						}
 
-						if (Plugin.levelData.GameplayCoreSceneSetupData.gameplayModifiers.songSpeedMul >= 1)
+						if (multi >= 1)
 						{
 							noteJumpValue += Math.Abs(noteJumpValue - multi * noteJumpValue);
 						}
