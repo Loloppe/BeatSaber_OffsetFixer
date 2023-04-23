@@ -14,7 +14,7 @@ namespace BeatSaber_OffsetFixer.HarmonyPatches
 			ref Vector3 ____jumpEndPos, ref Vector3 ____moveStartPos, ref float ____spawnAheadTime, ref float ____startHalfJumpDurationInBeats, ref float ____maxHalfJumpDistance)
 		{
 			if(Configs.Configs.Instance.Enabled)
-            {
+			{
 				// No touch
 				____noteLinesCount = noteLinesCount;
 				____noteJumpMovementSpeed = startNoteJumpMovementSpeed;
@@ -59,18 +59,16 @@ namespace BeatSaber_OffsetFixer.HarmonyPatches
 				float beatDuration = startBpm.OneBeatDuration();
 				float rtOffset = CoreMathUtils.CalculateHalfJumpDurationInBeats(____startHalfJumpDurationInBeats, ____maxHalfJumpDistance, ____noteJumpMovementSpeed, beatDuration, ____noteJumpStartBeatOffset) * 2f;
 				if(Configs.Configs.Instance.Snap)
-                {
+				{
 					var value = beatDuration * rtOffset;
 					var factor = beatDuration / Configs.Configs.Instance.Precision;
 					var nearestMultiple = (float)Math.Round(value / factor, MidpointRounding.AwayFromZero) * factor;
 					____jumpDuration = nearestMultiple;
 				}
 				else
-                {
+				{
 					____jumpDuration = beatDuration * rtOffset;
 				}
-
-				Plugin.Log.Info("check:" + ____jumpDuration);
 
 				// No touch
 				____rightVec = rightVec;
