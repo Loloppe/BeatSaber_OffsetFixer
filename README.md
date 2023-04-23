@@ -1,15 +1,11 @@
-﻿# BeatSaber_JDFixerModifiers
+﻿# BeatSaber_OffsetFixer
 
-This plugin modify JD/RT by X multiplier based on modifier speed, so you won't have to do that part manually anymore.  
-The default values are:
-- SS 0.85
-- Default 1.0
-- FS 1.2
-- SF 1.5  
+This plugin is similar to JDFixer/NJSFixer/EasyRT, but allow the player to set a specific offset based on BPM instead.  
+This specific offset is calculated with this formula: beat duration * (jump / precision).  
+The spawn offset is not affected by NJS and overwrite JD and RT.  
+This is similar to using the base game offset setting, but better and more precise.  
   
-Also apply to practice mode based on the speed slider %.  
-Should be compatible with JDFixer and EasyRT.  
-Each modifier multiplier are configurable in the plugin config menu.  
+You can configure the jump and precision in the gameplay config menu.
   
 Plugin Requirement:
 - BS_Utils
