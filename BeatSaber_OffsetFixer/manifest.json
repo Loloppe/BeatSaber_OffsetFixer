@@ -3,7 +3,7 @@
   "id": "BeatSaber_OffsetFixer",
   "name": "BeatSaber_OffsetFixer",
   "author": "Loloppe",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "",
   "gameVersion": "1.29.1",
   "dependsOn": {
