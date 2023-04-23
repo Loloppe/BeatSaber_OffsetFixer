@@ -19,8 +19,33 @@ namespace BeatSaber_OffsetFixer.HarmonyPatches
 				____noteLinesCount = noteLinesCount;
 				____noteJumpMovementSpeed = startNoteJumpMovementSpeed;
 
+				// Here we deal with modifiers
+				float multiplier = 1f;
+				if (Configs.Configs.Instance.Overwrite)
+				{
+					if (Plugin.levelData.GameplayCoreSceneSetupData.practiceSettings != null) // Practice mode
+					{
+						multiplier = Plugin.levelData.GameplayCoreSceneSetupData.practiceSettings.songSpeedMul;
+					}
+					else // Non-practice
+					{
+						if (Plugin.levelData.GameplayCoreSceneSetupData.gameplayModifiers.songSpeed == GameplayModifiers.SongSpeed.Slower)
+						{
+							multiplier = Configs.Configs.Instance.SS;
+						}
+						else if (Plugin.levelData.GameplayCoreSceneSetupData.gameplayModifiers.songSpeed == GameplayModifiers.SongSpeed.Faster)
+						{
+							multiplier = Configs.Configs.Instance.FS;
+						}
+						else if (Plugin.levelData.GameplayCoreSceneSetupData.gameplayModifiers.songSpeed == GameplayModifiers.SongSpeed.SuperFast)
+						{
+							multiplier = Configs.Configs.Instance.SF;
+						}
+					}
+				}
+
 				// Yeeted from JDFixer
-				var desiredJumpDistance = Configs.Configs.Instance.ReactionTime * startNoteJumpMovementSpeed / 500;
+				var desiredJumpDistance = (Configs.Configs.Instance.ReactionTime * multiplier) * startNoteJumpMovementSpeed / 500;
 				var halfJumpDuration = 4f;
 				while (startNoteJumpMovementSpeed * (60f / startBpm) * halfJumpDuration > 17.999)
 					halfJumpDuration /= 2f;
@@ -30,61 +55,22 @@ namespace BeatSaber_OffsetFixer.HarmonyPatches
 				float jumpDurationMultiplier = desiredJumpDur / (halfJumpDuration * (60f / startBpm) * 2f);
 				____noteJumpStartBeatOffset = (halfJumpDuration * jumpDurationMultiplier) - halfJumpDuration;
 
-				// Here we deal with modifiers
-				if(Configs.Configs.Instance.Overwrite)
-                {
-					if (Plugin.levelData.GameplayCoreSceneSetupData.practiceSettings != null) // Practice mode
-					{
-						if (Plugin.levelData.GameplayCoreSceneSetupData.practiceSettings.songSpeedMul >= 1)
-						{
-							____noteJumpStartBeatOffset += Math.Abs(____noteJumpStartBeatOffset - Plugin.levelData.GameplayCoreSceneSetupData.practiceSettings.songSpeedMul * ____noteJumpStartBeatOffset);
-						}
-						else
-						{
-							____noteJumpStartBeatOffset -= Math.Abs(____noteJumpStartBeatOffset - Plugin.levelData.GameplayCoreSceneSetupData.practiceSettings.songSpeedMul * ____noteJumpStartBeatOffset);
-						}
-					}
-					else // Non-practice
-					{
-						var multi = 1f;
-						if (Plugin.levelData.GameplayCoreSceneSetupData.gameplayModifiers.songSpeed == GameplayModifiers.SongSpeed.Slower)
-						{
-							multi = Configs.Configs.Instance.SS;
-						}
-						else if (Plugin.levelData.GameplayCoreSceneSetupData.gameplayModifiers.songSpeed == GameplayModifiers.SongSpeed.Faster)
-						{
-							multi = Configs.Configs.Instance.FS;
-						}
-						else if (Plugin.levelData.GameplayCoreSceneSetupData.gameplayModifiers.songSpeed == GameplayModifiers.SongSpeed.SuperFast)
-						{
-							multi = Configs.Configs.Instance.SF;
-						}
-
-						if (multi >= 1)
-						{
-							____noteJumpStartBeatOffset += Math.Abs(____noteJumpStartBeatOffset - multi * ____noteJumpStartBeatOffset);
-						}
-						else
-						{
-							____noteJumpStartBeatOffset -= Math.Abs(____noteJumpStartBeatOffset - multi * ____noteJumpStartBeatOffset);
-						}
-					}
-				}
-
 				// Get the closest beat snap, based on RT and precision
 				float beatDuration = startBpm.OneBeatDuration();
 				float rtOffset = CoreMathUtils.CalculateHalfJumpDurationInBeats(____startHalfJumpDurationInBeats, ____maxHalfJumpDistance, ____noteJumpMovementSpeed, beatDuration, ____noteJumpStartBeatOffset) * 2f;
-				var value = beatDuration * rtOffset;
-				var factor = beatDuration / Configs.Configs.Instance.Precision;
 				if(Configs.Configs.Instance.Snap)
                 {
+					var value = beatDuration * rtOffset;
+					var factor = beatDuration / Configs.Configs.Instance.Precision;
 					var nearestMultiple = (float)Math.Round(value / factor, MidpointRounding.AwayFromZero) * factor;
 					____jumpDuration = nearestMultiple;
 				}
 				else
                 {
-					____jumpDuration = rtOffset;
+					____jumpDuration = beatDuration * rtOffset;
 				}
+
+				Plugin.Log.Info("check:" + ____jumpDuration);
 
 				// No touch
 				____rightVec = rightVec;
