@@ -1,9 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/bsmg/BSIPA-MetadataFileSchema/master/Schema.json",
-  "id": "BeatSaber_JDFixerModifiers",
-  "name": "BeatSaber_JDFixerModifiers",
+  "id": "BeatSaber_OffsetFixer",
+  "name": "BeatSaber_OffsetFixer",
   "author": "Loloppe",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "gameVersion": "1.29.1",
   "dependsOn": {

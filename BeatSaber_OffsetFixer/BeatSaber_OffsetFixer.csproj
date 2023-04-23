@@ -8,8 +8,8 @@
     <ProjectGuid>{A7E65776-7A78-4213-9480-5D3A68F16DBD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BeatSaber_JDFixerModifiers</RootNamespace>
-    <AssemblyName>JDFixerModifiers</AssemblyName>
+    <RootNamespace>BeatSaber_OffsetFixer</RootNamespace>
+    <AssemblyName>OffsetFixer</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <DebugSymbols>true</DebugSymbols>
@@ -48,6 +48,10 @@
     <Reference Include="System.Xml" />
     <Reference Include="Main">
       <HintPath>$(BeatSaberDir)\Beat Saber_Data\Managed\Main.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Core">
+      <HintPath>$(BeatSaberDir)\Beat Saber_Data\Managed\Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="GameplayCore">

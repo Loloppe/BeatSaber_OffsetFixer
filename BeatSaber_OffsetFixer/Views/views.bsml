@@ -1,0 +1,10 @@
+﻿<settings-container>
+	<checkbox-setting apply-on-change="true" value="Enabled" text="Enable Plugin"/>
+	<horizontal>
+		<text text='Spawn = BPM * (Jump / Precision)' align='Center'/>
+	</horizontal>
+	<slider-setting apply-on-change="true" value="Jump" text="Jump"
+						min="1" max="32" increment="1"/>
+	<slider-setting apply-on-change="true" value="Precision" text="Precision"
+						min="1" max="8" increment="1"/>
+</settings-container>

@@ -41,3 +41,6 @@ BeatSaber_JDFixerModifiers/obj/Release/JDFixerModifiers.dll
 BeatSaber_JDFixerModifiers/obj/Release/JDFixerModifiers.pdb
 /BeatSaber_JDFixerModifiers/bin/Release/zip
 /.vs/BeatSaber_JDFixerModifiers/FileContentIndex
+/.vs/BeatSaber_OffsetFixer
+/BeatSaber_OffsetFixer/bin/Release
+/BeatSaber_OffsetFixer/obj

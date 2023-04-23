@@ -8,10 +8,8 @@ namespace BeatSaber_JDFixerModifiers.Configs
 	{
 		public static Configs Instance;
 		public virtual bool Enabled { get; set; } = true;
-		public virtual bool Overwrite { get; set; } = false;
-		public virtual float SS { get; set; } = 0.85f;
-		public virtual float FS { get; set; } = 1.2f;
-		public virtual float SF { get; set; } = 1.5f;
+		public virtual float Jump { get; set; } = 4f;
+		public virtual float Precision { get; set; } = 1f;
 
 		/// <summary>
 		/// This is called whenever BSIPA reads the config from disk (including when file changes are detected).
