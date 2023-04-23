@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace BeatSaber_JDFixerModifiers.HarmonyPatches
+namespace BeatSaber_OffsetFixer.HarmonyPatches
 {
 	[HarmonyPatch(typeof(BeatmapObjectSpawnMovementData), "Init")]
 	[HarmonyAfter(new string[] { "com.zephyr.BeatSaber.JDFixer" })]

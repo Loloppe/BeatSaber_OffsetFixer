@@ -2,7 +2,7 @@
 using IPA.Config.Stores;
 
 [assembly: InternalsVisibleTo(GeneratedStore.AssemblyVisibilityTarget)]
-namespace BeatSaber_JDFixerModifiers.Configs
+namespace BeatSaber_OffsetFixer.Configs
 {
 	public class Configs
 	{

@@ -7,7 +7,7 @@ using System.Reflection;
 using UnityEngine.SceneManagement;
 using IPALogger = IPA.Logging.Logger;
 
-namespace BeatSaber_JDFixerModifiers
+namespace BeatSaber_OffsetFixer
 {
     [Plugin(RuntimeOptions.DynamicInit)]
     public class Plugin
@@ -23,7 +23,7 @@ namespace BeatSaber_JDFixerModifiers
             Instance = this;
             Log = logger;
             Configs.Configs.Instance = conf.Generated<Configs.Configs>();
-            harmony = new Harmony("Loloppe.BeatSaber.JDFixerModifiers");
+            harmony = new Harmony("Loloppe.BeatSaber.OffsetFixer");
         }
 
         [OnEnable]
@@ -31,8 +31,8 @@ namespace BeatSaber_JDFixerModifiers
         {
             SceneManager.activeSceneChanged += OnActiveSceneChanged;
             harmony.PatchAll(Assembly.GetExecutingAssembly());
-            BSMLSettings.instance.AddSettingsMenu("JDFixerModifiers", "BeatSaber_JDFixerModifiers.Views.views.bsml", Configs.Configs.Instance);
-            GameplaySetup.instance.AddTab("JDFixerModifiers", "BeatSaber_JDFixerModifiers.Views.views.bsml", Configs.Configs.Instance, MenuType.All);
+            BSMLSettings.instance.AddSettingsMenu("OffsetFixer", "BeatSaber_OffsetFixer.Views.views.bsml", Configs.Configs.Instance);
+            GameplaySetup.instance.AddTab("OffsetFixer", "BeatSaber_OffsetFixer.Views.views.bsml", Configs.Configs.Instance, MenuType.All);
         }
 
         public void OnActiveSceneChanged(Scene arg0, Scene scene)
@@ -49,7 +49,7 @@ namespace BeatSaber_JDFixerModifiers
             SceneManager.activeSceneChanged -= OnActiveSceneChanged;
             harmony.UnpatchSelf();
             BSMLSettings.instance.RemoveSettingsMenu(Configs.Configs.Instance);
-            GameplaySetup.instance.RemoveTab("JDFixerModifiers");
+            GameplaySetup.instance.RemoveTab("OffsetFixer");
         }
     }
 }
