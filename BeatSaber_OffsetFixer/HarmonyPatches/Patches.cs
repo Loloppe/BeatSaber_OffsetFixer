@@ -44,6 +44,15 @@ namespace BeatSaber_OffsetFixer.HarmonyPatches
 					}
 				}
 
+				// Fixed BPM
+				var bpmMulti = 1f;
+				if (Configs.Configs.Instance.FloorBPM)
+				{
+					if(Configs.Configs.Instance.BPM > startBpm)
+                    {
+						bpmMulti = (Configs.Configs.Instance.BPM / startBpm);
+					}
+				}
 				// Yeeted from JDFixer
 				var desiredJumpDistance = (Configs.Configs.Instance.ReactionTime * multiplier) * startNoteJumpMovementSpeed / 500;
 				var halfJumpDuration = 4f;
@@ -60,14 +69,14 @@ namespace BeatSaber_OffsetFixer.HarmonyPatches
 				float rtOffset = CoreMathUtils.CalculateHalfJumpDurationInBeats(____startHalfJumpDurationInBeats, ____maxHalfJumpDistance, ____noteJumpMovementSpeed, beatDuration, ____noteJumpStartBeatOffset) * 2f;
 				if(Configs.Configs.Instance.Snap)
 				{
-					var value = beatDuration * rtOffset;
+					var value = beatDuration * rtOffset * bpmMulti;
 					var factor = beatDuration / Configs.Configs.Instance.Precision;
 					var nearestMultiple = (float)Math.Round(value / factor, MidpointRounding.AwayFromZero) * factor;
 					____jumpDuration = nearestMultiple;
 				}
 				else
 				{
-					____jumpDuration = beatDuration * rtOffset;
+					____jumpDuration = beatDuration * rtOffset * bpmMulti;
 				}
 
 				// No touch
