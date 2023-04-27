@@ -1,7 +1,7 @@
 ﻿<settings-container>
 	<checkbox-setting apply-on-change="true" value="Enabled" text="Enable Plugin"/>
 	<slider-setting apply-on-change="true" value="ReactionTime" text="Reaction Time (ms)"
-					   min="300" max="600" increment="5"/>
+					   min="300" max="1000" increment="10"/>
 	<checkbox-setting apply-on-change="true" value="FloorBPM" text="BPM Floor"/>
 	<slider-setting apply-on-change="true" value="BPM" text="BPM"
 						min="50" max="500" increment="5"/>
