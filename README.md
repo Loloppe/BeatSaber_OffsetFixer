@@ -2,7 +2,7 @@
 
 Plugin features:
 - Reaction Time (ms)
-- Floor BPM (multiplier based on Floor BPM / Map BPM if the map BPM is lower)
+- NJS multiplier (value / NJS)
 - Snap Offset to grid via Precision (based on beat duration)
 - Automatic RT overwrite on Speed Modifier (SS, FS, SF) 
   
