@@ -9,8 +9,8 @@ namespace BeatSaber_OffsetFixer.Configs
 		public static Configs Instance;
 		public virtual bool Enabled { get; set; } = true;
 		public virtual float ReactionTime { get; set; } = 450f;
-		public virtual bool FloorBPM { get; set; } = true;
-		public virtual float BPM { get; set; } = 200;
+		public virtual bool NJSMultiplier { get; set; } = true;
+		public virtual float NJS { get; set; } = 20f;
 		public virtual bool Snap { get; set; } = true;
 		public virtual float Precision { get; set; } = 4f;
 		public virtual bool Overwrite { get; set; } = true;
