@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using System;
+using System.Reflection;
 using UnityEngine;
 
 namespace BeatSaber_OffsetFixer.HarmonyPatches
@@ -19,7 +20,7 @@ namespace BeatSaber_OffsetFixer.HarmonyPatches
 				____noteLinesCount = noteLinesCount;
 				____noteJumpMovementSpeed = startNoteJumpMovementSpeed;
 
-				// Here we deal with modifiers
+				// Modifiers
 				float multiplier = 1f;
 				if (Configs.Configs.Instance.Overwrite)
 				{
@@ -44,13 +45,15 @@ namespace BeatSaber_OffsetFixer.HarmonyPatches
 					}
 				}
 
-				// NJS Multiplier
-				var multi = 1f;
+                // RT Multiplier based on NJS
+				// The higher the NJS, the lower the RT should be
+                var multi = 1f;
 				if (Configs.Configs.Instance.NJSMultiplier)
 				{
 					multi = Configs.Configs.Instance.NJS / startNoteJumpMovementSpeed;
 				}
-				// Yeeted from JDFixer
+
+				// Calculation yoinked from JDFixer
 				var desiredJumpDistance = (Configs.Configs.Instance.ReactionTime * multiplier) * startNoteJumpMovementSpeed / 500;
 				var halfJumpDuration = 4f;
 				while (startNoteJumpMovementSpeed * (60f / startBpm) * halfJumpDuration > 17.999)
@@ -61,9 +64,9 @@ namespace BeatSaber_OffsetFixer.HarmonyPatches
 				float jumpDurationMultiplier = desiredJumpDur / (halfJumpDuration * (60f / startBpm) * 2f);
 				____noteJumpStartBeatOffset = (halfJumpDuration * jumpDurationMultiplier) - halfJumpDuration;
 
-				// Get the closest beat snap, based on RT and precision
-				float beatDuration = startBpm.OneBeatDuration();
-				float rtOffset = CoreMathUtils.CalculateHalfJumpDurationInBeats(____startHalfJumpDurationInBeats, ____maxHalfJumpDistance, ____noteJumpMovementSpeed, beatDuration, ____noteJumpStartBeatOffset) * 2f;
+                // Get the closest beat snap, based on RT and precision
+                float beatDuration = OneBeatDuration(startBpm);
+                float rtOffset = CoreMathUtils.CalculateHalfJumpDurationInBeats(____startHalfJumpDurationInBeats, ____maxHalfJumpDistance, ____noteJumpMovementSpeed, beatDuration, ____noteJumpStartBeatOffset) * 2f;
 				if(Configs.Configs.Instance.Snap)
 				{
 					var value = beatDuration * rtOffset * multi;
@@ -92,5 +95,14 @@ namespace BeatSaber_OffsetFixer.HarmonyPatches
 
 			return true;
 		}
-	}
+
+        public static float OneBeatDuration(this float bpm)
+        {
+            if (bpm <= 0f)
+            {
+                return 0f;
+            }
+            return 60f / bpm;
+        }
+    }
 }

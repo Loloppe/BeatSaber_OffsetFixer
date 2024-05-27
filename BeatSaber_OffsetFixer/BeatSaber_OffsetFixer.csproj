@@ -122,7 +122,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Directory.Build.props" Condition="Exists('Directory.Build.props')" />
-    <None Include="BeatSaber_JDFixerModifiers.csproj.user" Condition="Exists('BeatSaber_JDFixerModifiers.csproj.user')" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="BeatSaberModdingTools.Tasks">
