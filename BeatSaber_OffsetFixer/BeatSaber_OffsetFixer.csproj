@@ -133,6 +133,5 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\views.bsml" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,5 +3,6 @@
   <PropertyGroup>
     <BeatSaberDir>C:\Program Files (x86)\Steam\steamapps\common\Beat Saber</BeatSaberDir>
     <ReferencePath>C:\Users\Laure\OneDrive\Documents\BSManager\BSInstances\1.34.2\Beat Saber_Data\Managed;C:\Users\Laure\OneDrive\Documents\BSManager\BSInstances\1.34.2\Libs;C:\Users\Laure\OneDrive\Documents\BSManager\BSInstances\1.34.2\Plugins</ReferencePath>
+    <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
 </Project>
