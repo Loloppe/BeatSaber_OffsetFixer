@@ -47,10 +47,11 @@ namespace BeatSaber_OffsetFixer.HarmonyPatches
 
                 // RT Multiplier based on NJS
 				// The higher the NJS, the lower the RT should be
+				// Also take into consideration modifiers
                 var multi = 1f;
 				if (Configs.Configs.Instance.NJSMultiplier)
 				{
-					multi = Configs.Configs.Instance.NJS / startNoteJumpMovementSpeed;
+					multi = Configs.Configs.Instance.NJS / (startNoteJumpMovementSpeed * multiplier);
 				}
 
 				// Calculation yoinked from JDFixer
