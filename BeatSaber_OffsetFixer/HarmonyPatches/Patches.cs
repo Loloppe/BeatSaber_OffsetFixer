@@ -51,7 +51,7 @@ namespace BeatSaber_OffsetFixer.HarmonyPatches
                 var multi = 1f;
 				if (Configs.Configs.Instance.NJSMultiplier)
 				{
-					multi = Configs.Configs.Instance.NJS / (startNoteJumpMovementSpeed * multiplier);
+					multi = Configs.Configs.Instance.NJS / startNoteJumpMovementSpeed;
 				}
 
 				// Calculation yoinked from JDFixer
