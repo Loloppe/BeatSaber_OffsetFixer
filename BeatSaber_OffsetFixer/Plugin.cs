@@ -31,8 +31,14 @@ namespace BeatSaber_OffsetFixer
         {
             SceneManager.activeSceneChanged += OnActiveSceneChanged;
             harmony.PatchAll(Assembly.GetExecutingAssembly());
-            BSMLSettings.instance.AddSettingsMenu("OffsetFixer", "BeatSaber_OffsetFixer.Views.views.bsml", Configs.Configs.Instance);
-            GameplaySetup.instance.AddTab("OffsetFixer", "BeatSaber_OffsetFixer.Views.views.bsml", Configs.Configs.Instance, MenuType.All);
+            BeatSaberMarkupLanguage.Util.MainMenuAwaiter.MainMenuInitializing += MainMenuInit;
+            
+        }
+
+        public void MainMenuInit()
+        {
+            BSMLSettings.Instance.AddSettingsMenu("OffsetFixer", "BeatSaber_OffsetFixer.Views.views.bsml", Configs.Configs.Instance);
+            GameplaySetup.Instance.AddTab("OffsetFixer", "BeatSaber_OffsetFixer.Views.views.bsml", Configs.Configs.Instance, MenuType.All);
         }
 
         public void OnActiveSceneChanged(Scene arg0, Scene scene)
@@ -48,8 +54,8 @@ namespace BeatSaber_OffsetFixer
         {
             SceneManager.activeSceneChanged -= OnActiveSceneChanged;
             harmony.UnpatchSelf();
-            BSMLSettings.instance.RemoveSettingsMenu(Configs.Configs.Instance);
-            GameplaySetup.instance.RemoveTab("OffsetFixer");
+            BSMLSettings.Instance.RemoveSettingsMenu(Configs.Configs.Instance);
+            GameplaySetup.Instance.RemoveTab("OffsetFixer");
         }
     }
 }

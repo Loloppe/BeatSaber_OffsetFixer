@@ -7,7 +7,7 @@ namespace BeatSaber_OffsetFixer.Configs
 	public class Configs
 	{
 		public static Configs Instance;
-		public virtual bool Enabled { get; set; } = true;
+		public virtual bool Enabled { get; set; } = false;
 		public virtual float ReactionTime { get; set; } = 450f;
 		public virtual bool NJSMultiplier { get; set; } = true;
 		public virtual float NJS { get; set; } = 20f;
