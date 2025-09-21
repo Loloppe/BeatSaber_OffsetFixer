@@ -46,3 +46,5 @@ BeatSaber_JDFixerModifiers/obj/Release/JDFixerModifiers.pdb
 /BeatSaber_OffsetFixer/obj
 /.vs
 /BeatSaber_OffsetFixer/.vs
+/packages/BepInEx.AssemblyPublicizer.MSBuild.0.4.1
+*.htm
