@@ -3,10 +3,11 @@
   "id": "BeatSaber_OffsetFixer",
   "name": "BeatSaber_OffsetFixer",
   "author": "Loloppe",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "",
-  "gameVersion": "1.37.5",
+  "gameVersion": "1.40.8",
   "dependsOn": {
-    "BSIPA": "^4.2.0"
+    "BSIPA": "^4.2.0",
+    "BeatSaberMarkupLanguage":  "^1.12.0"
   }
 }
